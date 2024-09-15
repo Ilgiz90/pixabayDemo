@@ -9,6 +9,5 @@ xcuserdata/
 ## Swift Package Manager
 Package.pins
 Package.resolved
-*.xcodeproj
 .swiftpm
 .build/
