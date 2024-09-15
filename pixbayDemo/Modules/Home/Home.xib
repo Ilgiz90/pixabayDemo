@@ -33,7 +33,7 @@
                 </searchBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="FUo-Dm-RpG"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="G6S-D2-Qd6" firstAttribute="leading" secondItem="FUo-Dm-RpG" secondAttribute="leading" id="DJf-0v-6qa"/>
                 <constraint firstItem="35m-ty-e1C" firstAttribute="trailing" secondItem="FUo-Dm-RpG" secondAttribute="trailing" id="Gv5-k4-SDK"/>
