@@ -6,11 +6,14 @@
 //
 
 import UIKit
-
+import Alamofire
+import Combine
 final class HomeViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    let imageInfoLoaderService = ServicesFactory.shared.imageInfoLoaderService
+    private var subscriptions = Set<AnyCancellable>()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -22,6 +25,17 @@ final class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.reloadData()
         searchBar.delegate = self
+    }
+    
+    func loadImagesInfo(searchString: String) -> AnyPublisher<HitResponse, ImageInfoLoaderError> {
+        return AF.request(Constants.API.baseURL+Constants.API.apiKeypath+Constants.API.apiKey+Constants.API.searchPath+searchString)
+            .publishDecodable(type: HitResponse.self)
+            .value()
+            .mapError({ error -> ImageInfoLoaderError in
+                ImageInfoLoaderError(description: error.localizedDescription)
+            })
+            .eraseToAnyPublisher()
+        
     }
 }
 
@@ -60,6 +74,14 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text)
+        imageInfoLoaderService
+            .loadImagesInfo(searchString: searchBar.text ?? "")
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                print(error)
+            } receiveValue: { result in
+                print(result)
+            }
+            .store(in: &subscriptions)
     }
 }
