@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else {
             return false
         }
-        window.rootViewController = HomeViewController(nibName: "Home", bundle: nil)
+        window.rootViewController = HomeWireframe().viewController
         window.makeKeyAndVisible()
         return true
     }

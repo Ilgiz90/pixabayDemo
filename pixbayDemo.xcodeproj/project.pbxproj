@@ -26,6 +26,10 @@
 		E4E366532C9870F20094046A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E366522C9870F20094046A /* Constants.swift */; };
 		E4E366562C98735D0094046A /* ServicesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E366552C98735D0094046A /* ServicesFactory.swift */; };
 		E4E366582C9874200094046A /* ServicesFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E366572C9874200094046A /* ServicesFactoryProtocol.swift */; };
+		E4E3665D2C9896A00094046A /* HomeInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E3665C2C9896A00094046A /* HomeInterfaces.swift */; };
+		E4E3665F2C989ACB0094046A /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E3665E2C989ACB0094046A /* HomeWireframe.swift */; };
+		E4E366612C989AEB0094046A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E366602C989AEB0094046A /* HomeInteractor.swift */; };
+		E4E366632C989B060094046A /* HomePresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E366622C989B060094046A /* HomePresentor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		E4E366522C9870F20094046A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4E366552C98735D0094046A /* ServicesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesFactory.swift; sourceTree = "<group>"; };
 		E4E366572C9874200094046A /* ServicesFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesFactoryProtocol.swift; sourceTree = "<group>"; };
+		E4E3665C2C9896A00094046A /* HomeInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaces.swift; sourceTree = "<group>"; };
+		E4E3665E2C989ACB0094046A /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		E4E366602C989AEB0094046A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		E4E366622C989B060094046A /* HomePresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresentor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +129,10 @@
 				E4E366292C959F490094046A /* Cell */,
 				E4E366252C948BB90094046A /* HomeViewController.swift */,
 				E4E366272C956C470094046A /* Home.xib */,
+				E4E3665C2C9896A00094046A /* HomeInterfaces.swift */,
+				E4E3665E2C989ACB0094046A /* HomeWireframe.swift */,
+				E4E366602C989AEB0094046A /* HomeInteractor.swift */,
+				E4E366622C989B060094046A /* HomePresentor.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -156,6 +168,7 @@
 		E4E366482C982A220094046A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E4E366642C98A3480094046A /* VIPER */,
 				E4E3664C2C982D2D0094046A /* Models */,
 				E4E366492C982A370094046A /* Services */,
 			);
@@ -195,6 +208,13 @@
 				E4E3664A2C982C370094046A /* ImageInfoLoaderService.swift */,
 			);
 			path = ImageInfoLoader;
+			sourceTree = "<group>";
+		};
+		E4E366642C98A3480094046A /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIPER;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,13 +303,17 @@
 				E4E366512C983CF40094046A /* ImageInfoLoaderServiceProtocol.swift in Sources */,
 				E4E3664F2C982EF40094046A /* Hit.swift in Sources */,
 				E4E3662D2C95A0F30094046A /* HomeItemCell.swift in Sources */,
+				E4E3665F2C989ACB0094046A /* HomeWireframe.swift in Sources */,
+				E4E3665D2C9896A00094046A /* HomeInterfaces.swift in Sources */,
 				E4E3663B2C96D5120094046A /* FullScreenItemCell.swift in Sources */,
+				E4E366632C989B060094046A /* HomePresentor.swift in Sources */,
 				E4E3664B2C982C370094046A /* ImageInfoLoaderService.swift in Sources */,
 				E49B2DE62C9454F40031BCDC /* AppDelegate.swift in Sources */,
 				E4E366582C9874200094046A /* ServicesFactoryProtocol.swift in Sources */,
 				E4E366262C948BB90094046A /* HomeViewController.swift in Sources */,
 				E4E366342C95F0CB0094046A /* FullScreenViewController.swift in Sources */,
 				E4E366532C9870F20094046A /* Constants.swift in Sources */,
+				E4E366612C989AEB0094046A /* HomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

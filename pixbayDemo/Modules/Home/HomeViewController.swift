@@ -8,12 +8,11 @@
 import UIKit
 import Alamofire
 import Combine
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController  {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    let imageInfoLoaderService = ServicesFactory.shared.imageInfoLoaderService
-    private var subscriptions = Set<AnyCancellable>()
+    var presenter: HomePresenterInterface!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -23,20 +22,9 @@ final class HomeViewController: UIViewController {
         HomeItemCell.register(in: tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.reloadData()
         searchBar.delegate = self
     }
     
-    func loadImagesInfo(searchString: String) -> AnyPublisher<HitResponse, ImageInfoLoaderError> {
-        return AF.request(Constants.API.baseURL+Constants.API.apiKeypath+Constants.API.apiKey+Constants.API.searchPath+searchString)
-            .publishDecodable(type: HitResponse.self)
-            .value()
-            .mapError({ error -> ImageInfoLoaderError in
-                ImageInfoLoaderError(description: error.localizedDescription)
-            })
-            .eraseToAnyPublisher()
-        
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -44,7 +32,7 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        presenter.numberOfItems
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,11 +48,7 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TAP")
-        let controller = FullScreenViewController(nibName: "FullScreen", bundle: nil)
-        controller.modalPresentationStyle = .overFullScreen
-        controller.modalTransitionStyle = .crossDissolve
-        self.present(controller, animated: true)
+        presenter.showFullScreen()
     }
 
 }
@@ -74,14 +58,13 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        imageInfoLoaderService
-            .loadImagesInfo(searchString: searchBar.text ?? "")
-            .receive(on: DispatchQueue.main)
-            .sink { error in
-                print(error)
-            } receiveValue: { result in
-                print(result)
-            }
-            .store(in: &subscriptions)
+        view.endEditing(true)
+        presenter.loadImages(searchString: searchBar.text)
+    }
+}
+
+extension HomeViewController: HomeViewInterface {
+    func reloadData() {
+        tableView.reloadData()
     }
 }
